@@ -13,6 +13,9 @@ const aliases = {
   '@utils': 'src/utils',
   '@state': 'src/state',
   '@design': 'src/design/index.scss',
+  '@database': 'src/database',
+  '@models': 'src/models',
+  '@nova': 'src/components/Nova',
 }
 
 module.exports = {
