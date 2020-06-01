@@ -1,4 +1,14 @@
+const URL = require('url').URL
 const appConfig = require('./src/app.config')
+
+let apiUrl
+
+const apiPath = process.env.API_BASE_URL || null
+try {
+  apiUrl = new URL(apiPath)
+} catch (e) {
+  apiUrl = null
+}
 
 /** @type import('@vue/cli-service').ProjectOptions */
 module.exports = {
@@ -30,10 +40,22 @@ module.exports = {
   // Configure Webpack's dev server.
   // https://cli.vuejs.org/guide/cli-service.html
   devServer: {
-    ...(process.env.API_BASE_URL
+    ...(apiUrl
       ? // Proxy API endpoints to the production base URL.
-        { proxy: { '/api': { target: process.env.API_BASE_URL } } }
+        {
+          proxy: {
+            '/api': {
+              target: apiUrl.origin,
+              changeOrigin: true,
+            },
+          },
+        }
       : // Proxy API endpoints a local mock API.
         { before: require('./tests/mock-api') }),
+  },
+  pwa: {
+    workboxOptions: {
+      skipWaiting: true,
+    },
   },
 }
