@@ -1,15 +1,20 @@
 import store from '@state/store'
+import Nova from '@nova/routes'
+import NovaExtended from '@nova/routesExtended'
 
 export default [
   {
     path: '/',
     name: 'home',
     component: () => lazyLoadView(import('@views/home.vue')),
+    children: [...Nova],
   },
   {
     path: '/login',
     name: 'login',
-    component: () => lazyLoadView(import('@views/login.vue')),
+    // component: () => lazyLoadView(import('@views/Login.vue')),
+    component: () =>
+      lazyLoadView(import('../components/Nova/Auth/login-page.vue')),
     meta: {
       beforeResolve(routeTo, routeFrom, next) {
         // If the user is already logged in
@@ -94,6 +99,7 @@ export default [
     path: '*',
     redirect: '404',
   },
+  ...NovaExtended,
 ]
 
 // Lazy-loads view components, but with better UX. A loading view
