@@ -1,16 +1,32 @@
 <script>
-import NavBar from '@components/nav-bar.vue'
+import NavBar from '@nova/layout/NavBar.vue'
+import AppBar from '@nova/layout/AppBar.vue'
 
 export default {
-  components: { NavBar },
+  name: 'Main',
+  components: {
+    NavBar,
+    AppBar,
+  },
+
+  computed: {
+    getCurrentYear: () => {
+      const year = new Date()
+      return year.getFullYear()
+    },
+  },
 }
 </script>
 
 <template>
-  <div :class="$style.container">
+  <v-app id="inspire">
     <NavBar />
+    <AppBar />
     <slot />
-  </div>
+    <v-footer app>
+      <span>&copy; {{ getCurrentYear }}</span>
+    </v-footer>
+  </v-app>
 </template>
 
 <style lang="scss" module>

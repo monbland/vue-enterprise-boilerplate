@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
-import MainLayout from './main.vue'
+import EmptyLayout from './empty'
 
 Vue.use(Vuetify)
 
-describe('@layouts/main.vue', () => {
+describe('@layouts/empty', () => {
   it('renders its content', () => {
     const slotContent = '<p>Hello!</p>'
-    const { element } = shallowMount(MainLayout, {
+    const { element } = shallowMount(EmptyLayout, {
       slots: {
         default: slotContent,
       },
