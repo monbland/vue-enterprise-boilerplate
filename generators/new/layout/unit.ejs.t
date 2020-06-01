@@ -4,7 +4,12 @@ to: "src/router/layouts/<%= h.changeCase.kebab(name) %>.unit.js"
 <%
   const fileName = h.changeCase.kebab(name)
   const importName = h.changeCase.pascal(fileName) + 'Layout'
-%>import <%= importName %> from './<%= fileName %>'
+%>
+import Vue from 'vue'
+import Vuetify from 'vuetify'
+import <%= importName %> from './<%= fileName %>'
+
+Vue.use(Vuetify)
 
 describe('@layouts/<%= fileName %>', () => {
   it('renders its content', () => {
