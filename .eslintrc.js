@@ -13,6 +13,10 @@ module.exports = {
     'prettier/standard',
     'prettier/vue',
   ],
+  plugins: [
+    // https://github.com/vuetifyjs/eslint-plugin-vuetify
+    'vuetify',
+  ],
   rules: {
     // Only allow debugger in development
     'no-debugger': process.env.PRE_COMMIT ? 'error' : 'off',
@@ -50,6 +54,8 @@ module.exports = {
       },
     ],
     'vue/valid-v-slot': 'error',
+    // https://github.com/vuetifyjs/eslint-plugin-vuetify
+    'vuetify/no-deprecated-classes': 'error',
   },
   overrides: [
     {
